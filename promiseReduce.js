@@ -10,9 +10,7 @@ async function promiseReduce(asyncFunctions, reduce, initialValue) {
 
 	for (let asyncFunction of asyncFunctions) {
 		try {
-			let result = await asyncFunction();
-
-			temp = reduce(temp, result);
+			temp = reduce(temp, await asyncFunction());
 		} catch (ex) {
 			console.log(ex);
 			return temp; // Тут можно возвращать какую-то более адекватную ошибку
@@ -33,8 +31,8 @@ function promiseReduce(asyncFunctions, reduce, initialValue) {
 			acc.then(async (temp) => {
 				try {
 					return reduce(temp, await fn());
-				} catch (e) {
-					console.log(e);
+				} catch (ex) {
+					console.log(ex);
 					return temp;
 				}
 			}),
