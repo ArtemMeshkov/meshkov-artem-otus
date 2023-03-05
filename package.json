@@ -1,0 +1,39 @@
+{
+  "name": "meshkov-artem-otus",
+  "version": "1.0.0",
+  "description": "Homework for otus",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node ./src/rss-api.js",
+    "run": "npx nodemon ./src/rss-api.js --inspect"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemMeshkov/meshkov-artem-otus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtemMeshkov/meshkov-artem-otus/issues"
+  },
+  "homepage": "https://github.com/ArtemMeshkov/meshkov-artem-otus#readme",
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
+    "jest": "^29.3.1",
+    "mockingoose": "^2.16.2",
+    "supertest": "^6.3.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "express-validation": "^4.1.0",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.8.4",
+    "nodemon": "^2.0.20",
+    "rss-parser": "^3.12.0"
+  }
+}
