@@ -1,0 +1,15 @@
+.logo {
+    height: 60px;
+    width: auto;
+    margin-right: 12px;
+}
+
+a {
+    font-family: sans-serif;
+    color:#504e4e;
+    text-decoration: none;
+
+    &.cdk-focused {
+        background-color: #dedede;
+    }
+}

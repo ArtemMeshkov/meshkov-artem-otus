@@ -1,0 +1,14 @@
+<div class="add-word--body">
+    <mat-form-field class="add-word--word">
+        <input matInput placeholder="Новое слово или текст"
+            [(ngModel)]="newWord">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Перевод"
+        [(ngModel)]="translate">
+    </mat-form-field>
+    <div class="add-word--actions">
+        <button mat-button class="add-word--save-btn" (click)="onSave()">Сохранить</button>
+        <button mat-button class="add-word--cancel-btn" (click)="OnCancel()">Отменить</button>
+    </div>
+</div>
