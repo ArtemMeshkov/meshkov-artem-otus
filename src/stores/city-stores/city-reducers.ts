@@ -1,0 +1,39 @@
+import {
+    CITY_ADD,
+    CITY_DELETE,
+    CityAddAction,
+    CityActionTypes,
+    CityStateProps,
+  } from '../../data/interfaces';
+  
+  const initialState: CityStateProps = {
+    cities: [],
+  };
+  
+  export const cityReducers = (state = initialState, action: CityActionTypes): CityStateProps => {
+    switch (action.type) {
+      case CITY_ADD:
+        // eslint-disable-next-line no-case-declarations
+        const addAction = action as CityAddAction;
+        return {
+          ...state,
+          cities: [
+            ...state.cities,
+            {
+              id: addAction.payload.id,
+              name: addAction.payload.name,
+              data: addAction.payload.data,
+            },
+          ]
+        };
+  
+      case CITY_DELETE:
+        return {
+          ...state,
+          cities: state.cities.filter(city => city.id !== action.payload),
+        };
+  
+      default:
+        return state;
+    }
+  };
