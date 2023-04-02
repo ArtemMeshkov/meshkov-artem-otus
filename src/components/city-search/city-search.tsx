@@ -36,7 +36,7 @@ const useStyles = makeStyles(() =>
 );
 
 interface CitySearchProps {
-  onAddCity: (data: any) => void,
+  onAddCity: (data: ({id: number; name: string; })) => void,
   onRemoveCity: (id: number) => void
 }
 
@@ -52,16 +52,14 @@ export const CitySearch: FC<CitySearchProps> = ({
     setSearchValue(e.target.value);
   };
 
-  const handleSearchCity = (searchValue: string) => {
-    fetchWeatherDataByName(searchValue)
-    .then(
-      result => setSearchResult(result)
-    )  
+  const handleSearchCity = async (searchValue: string) => {
+    const weatherData = await fetchWeatherDataByName(searchValue);
+    setSearchResult(weatherData);
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = async (e: React.KeyboardEvent) => {
     if(e.key === 'Enter'){
-      handleSearchCity(searchValue)
+      await handleSearchCity(searchValue)
     }
   }
 
@@ -84,7 +82,7 @@ export const CitySearch: FC<CitySearchProps> = ({
       </IconButton>
     </Paper>
     {
-      searchResult == null ? null : 
+      searchResult &&
         <CityCard 
           cityInfo={searchResult}
         />

@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "javascript-9-routing",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,8 +13,9 @@
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "css-loader": "4.3.0",
-    "dotenv": "8.2.0",
+    "@types/react-router-dom": "^5.3.3",
+    "css-loader": "^6.7.3",
+    "dotenv": "^8.2.0",
     "dotenv-expand": "5.1.0",
     "moment": "^2.29.1",
     "react": "^18.2.0",
@@ -22,8 +23,8 @@
     "react-dev-utils": "^11.0.3",
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.4",
-    "react-refresh": "^0.8.3",
-    "react-router-dom": "^5.3.4",
+    "react-refresh": "^0.14.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "redux": "^4.1.0",
     "resolve": "1.18.1",
@@ -48,6 +49,9 @@
     ]
   },
   "proxy": "http://localhost:3000",
+  "resolutions": {
+    "postcss": "8.2.6"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -59,5 +63,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2"
   }
 }

@@ -1,12 +1,6 @@
 import moment from 'moment'
 
-const API_KEY: string = '73efba092715a3960a70bf1cdace5473';
-const SEARCH_CITY_URL: string = 'http://api.openweathermap.org/data/2.5/weather';
-//3.0 версия платная..
-const CITY_FORECAST_URL: string = 'https://api.openweathermap.org/data/2.5/onecall'
-
-const parseData = (data: WeatherResponseProps) => {
-  return {
+const parseData = (data: WeatherResponseProps): IExtendedCityProps => ({
     id: data.id,             
     name: data.name,
     country: data.sys?.country,
@@ -17,8 +11,7 @@ const parseData = (data: WeatherResponseProps) => {
     lat: data.coord.lat,
     lon: data.coord.lon,
     iconUrl: data.weather[0].icon && `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
-  }
-}
+})
 
 const parseForecastData = (data: DailyForecastProps) => {
   const { daily } = data
@@ -39,7 +32,7 @@ const parseForecastData = (data: DailyForecastProps) => {
 }
 
 export function fetchWeatherDataByName(query: string) {
-  const url = `${SEARCH_CITY_URL}?q=${query}&units=metric&appid=${API_KEY}`
+  const url = `${process.env.REACT_APP_SEARCH_CITY_URL}?q=${query}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
   return fetch(url)
     .then(response => response.json())
     .then((data: WeatherResponseProps) => parseData(data))
@@ -47,7 +40,7 @@ export function fetchWeatherDataByName(query: string) {
 }
 
 export function fetchWeatherDataById(id: number) {
-  const url = `${SEARCH_CITY_URL}?id=${id}&units=metric&appid=${API_KEY}`
+  const url = `${process.env.REACT_APP_SEARCH_CITY_URL}?id=${id}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
   return fetch(url)
     .then(response => response.json())
     .then((data: WeatherResponseProps) => parseData(data))
@@ -55,7 +48,7 @@ export function fetchWeatherDataById(id: number) {
 }
 
 export function fetchCityForecast(lat: number, lon: number) {
-  const url = `${CITY_FORECAST_URL}?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${API_KEY}`
+  const url = `${process.env.REACT_APP_CITY_FORECAST_URL}?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}`
   return fetch(url)
     .then(response => response.json())
     .then((data) => parseForecastData(data))
@@ -76,7 +69,24 @@ export interface WeatherResponseProps {
   clouds: WeatherResponsePropsFieldClouds;
   sys: WeatherResponsePropsFieldSys;
   cod: number;
-};
+}
+
+export interface IExtendedCityProps {
+  id: number,             
+  name: string,
+  country: string,
+  temperature: number,
+  humidity: number,
+  description: string,
+  windSpeed: number,
+  lat: number,
+  lon: number,
+  iconUrl: string,
+}
+
+export interface IDayProps {
+  daily: DayProps[];
+}
 
 export interface DayProps {
   date: string
@@ -107,14 +117,14 @@ interface DayForecastProps {
 interface WeatherResponsePropsFieldCoord {
   lon: number;
   lat: number;
-};
+}
 
 interface WeatherResponsePropsFieldWeather {
   id: number;
   main: string;
   description: string;
   icon: string;
-};
+}
 
 interface WeatherResponsePropsFieldMain {
   temp: number;
@@ -123,15 +133,15 @@ interface WeatherResponsePropsFieldMain {
   temp_max: number;
   pressure: number;
   humidity: number;
-};
+}
 
 interface WeatherResponsePropsFieldWind {
   speed: number;
-};
+}
 
 interface WeatherResponsePropsFieldClouds {
   all: number;
-};
+}
 
 interface WeatherResponsePropsFieldSys {
   id: number;
@@ -139,4 +149,4 @@ interface WeatherResponsePropsFieldSys {
   country: string;
   sunrise: number;
   sunset: number;
-};
+}

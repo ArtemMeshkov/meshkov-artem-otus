@@ -13,7 +13,8 @@ import {
   export const cityReducers = (state = initialState, action: CityActionTypes): CityStateProps => {
     switch (action.type) {
       case CITY_ADD:
-        const addAction = action as CityAddAction
+        // eslint-disable-next-line no-case-declarations
+        const addAction = action as CityAddAction;
         return {
           ...state,
           cities: [

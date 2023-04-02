@@ -56,7 +56,7 @@ export const CityCard: FC<CityCardProps> = ({
 
   const { id, name, country, temperature, description, humidity, windSpeed, iconUrl } = cityInfo
 
-  const navigateToOtherCity = (id: any) => {
+  const navigateToOtherCity = (id: number) => {
     navigate(`/city/${id}`);
   }
 

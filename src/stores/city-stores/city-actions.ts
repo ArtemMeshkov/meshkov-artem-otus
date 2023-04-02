@@ -5,7 +5,7 @@ import {
     CityDeleteAction
   } from '../../data/interfaces';
   
-  export const cityAdd = (data: any): CityAddAction => {
+  export const cityAdd = (data: {id: number, name: string}): CityAddAction => {
     const id = data.id;
     const name = data.name;
     return {
@@ -14,9 +14,7 @@ import {
     };
   };
   
-  export const cityDelete = (id: number): CityDeleteAction => {
-    return {
+  export const cityDelete = (id: number): CityDeleteAction => ({
       type: CITY_DELETE,
       payload: id,
-    };
-  };
+  })

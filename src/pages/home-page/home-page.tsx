@@ -19,21 +19,17 @@ class Home extends React.Component<HomeProps> {
 
 interface HomeProps {
   cities: CityProps[],
-  onAddCity: (data: any) => void
+  onAddCity: (data: ({id: number; name: string; })) => void
   onRemoveCity: (id: number) => void
 }
 
-const mapStateToProps = (state: CityStateProps) => {
-  return {
+const mapStateToProps = (state: CityStateProps) => ({
     cities: state.cities
-  };
-};
+})
 
-const mapDispatchToProps = (dispatch: Dispatch<CityActionTypes>) => {
-  return {
-    onAddCity: (data: any) => dispatch(cityAdd(data)),
+const mapDispatchToProps = (dispatch: Dispatch<CityActionTypes>) => ({
+    onAddCity: (data: ({id: number; name: string; })) => dispatch(cityAdd(data)),
     onRemoveCity: (id: number) => dispatch(cityDelete(id))
-  };
-}
+})
 
 export const HomePage = connect(mapStateToProps, mapDispatchToProps)(Home)

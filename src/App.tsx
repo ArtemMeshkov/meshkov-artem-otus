@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import {
   createStyles, 
@@ -52,7 +52,7 @@ const menu: MenuLinkProps[] = [
   },
 ];
 
-const App = () => {
+const App: FC = () => {
   const classes = useStyles();
 
   return <div className={classes.root}>
