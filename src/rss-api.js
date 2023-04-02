@@ -1,14 +1,14 @@
-const express = require('express');
-const app = express();
+import express from 'express';
+import swaggerUiExpress from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
 
-const { mognoose, sequelize } = require('./db')
-const rssLink = require('./entities/rssNews')
-const swaggerUi = require('swagger-ui-express')
-const swaggerJSDoc = require('swagger-jsdoc')
+const app = express();
+import { start } from './db/mongoose.mjs';
+import { registerRss } from './entities/rssNews/index.mjs';
 
 ;(async() => {
-  const mognooseClient = await mognoose.start();
-  const options = swaggerJSDoc({
+  const mognooseClient = await start();
+  const options = swaggerJsdoc({
     definition: {
       openapi: '3.0.0',
       info: {
@@ -19,11 +19,11 @@ const swaggerJSDoc = require('swagger-jsdoc')
     apis: ['./src/entities/rssNews/routes.js'], // files containing annotations as above
   });
   
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(options));
+  app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(options));
   app.use(express.json());
 
   // app - сервер, mognooseClient - клиент для mongodb
-  rssLink.register(app, mognooseClient)
+  registerRss(app, mognooseClient)
 
   app.use((err, req, res, next) => {
     if (err instanceof HTTPError) {

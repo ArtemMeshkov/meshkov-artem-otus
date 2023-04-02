@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose')
+import { Schema } from "mongoose"
 
-module.exports = (mongoose) => {
+export function model(mongoose) {
   const RssLink = new Schema({
     rssDocs: { type: String, required: true },
     link: { type: String, required: true },

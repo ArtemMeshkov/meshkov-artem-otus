@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/ArtemMeshkov/meshkov-artem-otus.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

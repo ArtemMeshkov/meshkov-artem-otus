@@ -1,7 +1,7 @@
-const model = require('./model')
-const helperService = require('./../../utils/rss-parser-service.js')
+import { model } from './model.mjs';
+import { HelperService } from '../../utils/rss-parser-service.mjs';
 
-module.exports = class RssLinkInstance {
+export class RssLinkInstance {
   constructor(mongoose) {
     this.mongoose = mongoose;
     this.model = model(mongoose);
@@ -27,7 +27,7 @@ module.exports = class RssLinkInstance {
       throw new Error('Link must be xml typed');
     }
     try {
-      const rss = await helperService.getFromUrl(link);
+      const rss = await new HelperService().getFromUrl(link);
       const instance = new this.model({ link: link, rssDocs: JSON.stringify(rss) })
 
       return instance.save()

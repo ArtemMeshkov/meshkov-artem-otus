@@ -1,7 +1,9 @@
-const express = require("express");
-const { mognoose } = require('../db');
-const request = require("supertest");
-const bodyParser = require("body-parser");
+import express from 'express'
+import { start, disconnect } from '../db/mongoose.mjs';
+import request from 'supertest';
+import bodyParser from 'body-parser';
+import { registerRss } from '../entities/rssNews/index.mjs';
+
 const app = express();
 app.use(bodyParser.json());
 app.use((err, req, res, next) => {
@@ -12,17 +14,16 @@ app.use((err, req, res, next) => {
       return res.status(500).send({ success: false, error: { msg: err.message }});
     }
 })
-const rssLink = require('../entities/rssNews')
 
 const mockLink = "https://cyber.sports.ru/rss/all_news.xml";
 
 beforeAll(async () => {
-    const connect = await mognoose.start();
-    rssLink.register(app, connect);
+    const connect = await start();
+    registerRss(app, connect);
 })
 
 afterAll(async () => {
-    await mognoose.disconnect();
+    await disconnect();
 })
 
 describe("testing-server-routes", () => {

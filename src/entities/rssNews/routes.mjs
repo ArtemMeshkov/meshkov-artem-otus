@@ -1,7 +1,4 @@
-
-module.exports = {
-    register(express, rssLinkInstance) {
-      
+export function register(express, rssLinkInstance) { 
 /**
  * @swagger
  *
@@ -70,5 +67,4 @@ module.exports = {
 
       res.send({ success: true, data: result });
     });
-  }
 }
