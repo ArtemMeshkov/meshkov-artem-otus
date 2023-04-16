@@ -1,0 +1,15 @@
+<div class="add-word--body">
+    <div>
+        Переведите слово:
+    </div>
+    <div>
+        {{ input.word }}
+    </div>
+    <mat-form-field>
+        <input matInput placeholder="Перевод"
+        [(ngModel)]="translate">
+    </mat-form-field>
+    <div class="add-word--actions">
+        <button mat-button class="add-word--save-btn" (click)="setResponse()">Проверить</button>
+    </div>
+</div>

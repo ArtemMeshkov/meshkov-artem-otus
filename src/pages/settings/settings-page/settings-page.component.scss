@@ -1,0 +1,20 @@
+.settings-page {
+  padding: 10px;
+
+  .settings-block {
+    padding: 10px 0px 10px 0px;
+
+    &.language-block {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+input {
+    padding: 0px;
+  }
+  
+  .card-footer {
+    text-align: right;
+  }

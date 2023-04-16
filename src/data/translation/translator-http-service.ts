@@ -4,7 +4,7 @@ import { from, Observable } from "rxjs";
 import { ITranslateParams, Language, TranslatedResponse, TranslatorHttpService } from "./abstract";
 
 const translateApiUrl = (query: string, fromLanguage: Language, toLanguage: Language) =>
-    `https://api.mymemory.translated.net/get?q${query}&langpair${fromLanguage}|${toLanguage}`;
+    `https://api.mymemory.translated.net/get?q=${query}&langpair=${fromLanguage}|${toLanguage}`;
 
 @Injectable()
 export class TranslatorHttpServiceImpl implements TranslatorHttpService {

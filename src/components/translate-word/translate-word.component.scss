@@ -1,0 +1,17 @@
+.add-word {
+    &--body {
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--save-btn {
+        margin-right: 20px;
+        background: #7ad576;
+    }
+
+    &--cancel-btn {
+        background: #ff6f6f;
+    }
+}
