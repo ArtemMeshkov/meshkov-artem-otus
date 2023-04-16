@@ -10,14 +10,13 @@ const numberOfOptions = 5;
 })
 export class TranslateWordComponent implements OnInit, OnChanges {
     @Input()
-    input!: Word;
+    input!: string;
   
     @Output() 
     outcome = new EventEmitter<{ text: string, translation: string }>();
  
     constructor() { }
 
-    public vocabulary: Word[] = [];
     public translate = '';
     ngOnInit() {
     }
@@ -26,6 +25,6 @@ export class TranslateWordComponent implements OnInit, OnChanges {
     }
 
     setResponse() {
-      this.outcome.emit({ text: this.input.word, translation: this.translate });
+      this.outcome.emit({ text: this.input, translation: this.translate });
     }
 }

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Language } from 'src/data/translation/abstract';
 const storageKey = 'translate-app-config';
 
 export interface Config {
   wordsInTrainingQuantity: number;
   trainingSessionsNecessary: number;
   trainingLessonWordsQuantity: number;
-  language: 'ru' | 'eng';
+  languageFrom: Language;
+  languageTo: Language;
   timeToTrain: number; // время в минутах на упражнение
 }
 
@@ -20,7 +22,8 @@ export class ConfigService {
       wordsInTrainingQuantity: 36,
       trainingSessionsNecessary: 5,
       trainingLessonWordsQuantity: 5,
-      language: 'ru',
+      languageFrom: 'ru',
+      languageTo: 'eng',
       timeToTrain: 10,
     };
     const storage = localStorage.getItem(storageKey);

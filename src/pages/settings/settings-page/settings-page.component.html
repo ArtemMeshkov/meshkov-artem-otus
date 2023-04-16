@@ -6,8 +6,15 @@
       <div class="card-text">
         <form>
           <div class="settings-block language-block">
-            <label>Язык</label>
-            <mat-select [(value)]="config.language" style="width: 300px;">
+            <label>Язык с которого переводить</label>
+            <mat-select [(value)]="config.languageFrom" style="width: 300px;">
+              <mat-option value="ru">Русский</mat-option>
+              <mat-option value="eng">Английский</mat-option>
+            </mat-select>
+          </div>
+          <div class="settings-block language-block">
+            <label>Язык на который переводить</label>
+            <mat-select [(value)]="config.languageTo" style="width: 300px;">
               <mat-option value="ru">Русский</mat-option>
               <mat-option value="eng">Английский</mat-option>
             </mat-select>

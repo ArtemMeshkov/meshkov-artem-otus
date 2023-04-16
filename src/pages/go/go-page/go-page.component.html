@@ -3,5 +3,8 @@
    <div>
       Пройдено {{ wordPosition }} / {{ wordsToTranslate.length }} слов
    </div>
+   <div *ngIf="translatedWord">
+      Подсказка: {{ translatedWord }}
+   </div>
    <app-count-down [minutes]="timeToGo" (timeEnded)="timeEnded()"></app-count-down>
 </div>

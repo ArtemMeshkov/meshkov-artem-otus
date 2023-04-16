@@ -16,19 +16,26 @@ import { TranslateService } from 'src/services/translate/translate-service';
 export class GoPageComponent implements OnInit {
     constructor(readonly translationService: TranslateService, readonly storage: StorageService, readonly configService: ConfigService, readonly modalService: MatDialog) {
       this.config = configService.get();
-      this.wordsToTranslate = storage.getDictFromStorage();
     }
     config!: Config;
     
-    wordsToTranslate: Word[] = [];
+    wordsToTranslate: string[] = [];
     wordPosition = 0;
     timeToGo = 0;
+
+    translatedWord = '';
 
     private excerciseStopped$ = new Subject();
     private excerciseFinished$ = new Subject();
 
     ngOnInit(): void {
-        this.wordsToTranslate = this.storage.getDictFromStorage();
+        const words: string[] = [];
+        this.storage.getDictFromStorage().forEach(word => {
+            const wordsSplitted = word.word.split(/[;,]\s*|\s+/);
+            words.push(...wordsSplitted)
+        });
+
+        this.wordsToTranslate = words;
         this.timeToGo = this.config.timeToTrain;
         this.excerciseFinished$.pipe().subscribe(() => {
           if (this.wordPosition === this.wordsToTranslate.length) {
@@ -38,13 +45,18 @@ export class GoPageComponent implements OnInit {
     }
     
     translate({ text = '', translation = '' }) {
-      this.translationService.getWord(text).pipe(
+      const fromLang = this.config.languageFrom;
+      const toLang = this.config.languageTo;
+      this.translationService.getWord(text, fromLang, toLang).pipe(
         take(1)
       )
       .subscribe(trans => {
-        if (translation === trans) {
+        if (translation.toLowerCase() === trans.toLowerCase()) {
+          this.translatedWord = '';
           this.wordPosition++;
           this.excerciseFinished$.next(1);
+        } else {
+          this.translatedWord = trans.toLowerCase();
         }
       })
     }
