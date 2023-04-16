@@ -1,0 +1,11 @@
+<div class="recently-added--body">
+    <mat-list *ngFor="let item of items$ | async" role="list">
+        <mat-list-item role="listitem">
+            <span class="recently-added--word">{{item.word}}</span>
+            <span>{{item.translate}}</span>
+        </mat-list-item>
+    </mat-list>
+    <button mat-button (click)="openAddWord()">
+        Добавить в словарь
+    </button>
+</div>
